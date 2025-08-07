@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 7px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+.logo img {
+    background-color: white;
+    filter: invert();
+    width: 2.8vw;
+    white-space: nowrap;
+}
+
+.signup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    white-space: nowrap;
+}
+
+.signup h1 {
+    color: white;
+}
+
+.bw {
+    color: white;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.bw input {
+    color: white;
+    background-color: black;
+    border: 1px solid rgb(81, 81, 81);
+    width: 18vw;
+    height: 43px;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.bw input::placeholder {
+    padding: 9px;
+}
+
+.bw button {
+    background-color: #25d26a;
+    font-weight: 600;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+}
+
+.line1 {
+    background-color: white;
+    height: 1px;
+    width: 7.4vw;
+    opacity: 45%;
+}
+
+.line2 {
+    background-color: white;
+    height: 1px;
+    width: 7.4vw;
+    opacity: 45%;
+}
+
+.lines p {
+    color: white;
+}
+
+.lines {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.google {
+    width: 1.3rem;
+}
+
+.apple {
+    width: 1.6rem;
+    filter: invert();
+}
+
+.buttons button {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: black;
+    color: white;
+    border: 1px solid rgb(81, 81, 81);
+    border-radius: 50px;
+    width: 18vw;
+    height: 41px;
+    padding: 15px;
+}
+
+.horizontal {
+    width: 17.5rem;
+    background-color: white;
+    height: 1px;
+    opacity: 45%;
+    margin-top: 1rem;
+}
+
+.already {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.already p {
+    font-size: 12px;
+    color: white;
+}
+
+.already a {
+    font-size: 12px;
+    color: white;
+}
+
+.back {
+    color: white;
+    background-color: rgb(186, 0, 242);
+    width: 10rem;
+    height: 3rem;
+    margin-top: 1rem;
+    border-radius: 50px;
+    border: none;
+}
+
+@media (max-width:1400px) {
+
+    .bw input {
+        width: 35vw;
+        height: 43px;
+    }
+
+    .line1 {
+        width: 15.2vw;
+    }
+
+    .line2 {
+        width: 15.2vw;
+    }
+
+    .buttons button {
+        width: 34vw;
+    }
+
+    .buttons button p {
+        white-space: wrap;
+    }
+
+    .logo img {
+        width: 8vw;
+    }
+}
+
+@media (max-width:727px) {
+
+     .signup h1{
+        font-size: 1.7rem;
+     }
+    .bw input {
+        width: 62vw;
+        height: 43px;
+    }
+
+    .line1 {
+        width: 25vw;
+    }
+
+    .line2 {
+        width: 25vw;
+    }
+
+    .buttons button {
+        width: 62vw;
+    }
+
+    .buttons button p {
+        white-space: wrap;
+    }
+
+    .logo img {
+        width: 8vw;
+    }
+}
