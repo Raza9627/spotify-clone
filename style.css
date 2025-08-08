@@ -550,3 +550,15 @@ header {
 input[type="range"] {
   accent-color: black;
 }
+@media (max-width:1200px){
+.spotify-playlist{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spotify-playlist h1{
+  font-size: 25px;
+}
+
+
+}
