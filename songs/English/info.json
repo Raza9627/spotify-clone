@@ -1,4 +1,9 @@
 {
 "title": "English",
-"description": "English songs for you"
+"description": "English songs for you",
+"songs":[
+    "A Thousand Years.mp3",
+    "I Think They Call This Love.mp3",
+    "SNAP.mp3"
+]
 }

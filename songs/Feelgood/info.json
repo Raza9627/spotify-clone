@@ -1,4 +1,9 @@
 {
 "title": "Relax",
-"description": "Relax songs for you"
+"description": "Relax songs for you",
+"songs":[
+    "Bhula Dena.mp3",
+    "Heer.mp3",
+    "Maand.mp3"
+]
 }

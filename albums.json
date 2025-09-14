@@ -1,0 +1,33 @@
+[
+  {
+    "folder": "English",
+    "info": "songs/English/info.json",
+    "cover": "songs/English/cover.jpg"
+  },
+  {
+    "folder": "Feelgood",
+    "info": "songs/Feelgood/info.json",
+    "cover": "songs/Feelgood/cover.jpg"
+  },
+    {
+    "folder": "Lo-Fi",
+    "info": "songs/Lo-Fi/info.json",
+    "cover": "songs/Lo-Fi/cover.jpg"
+  },
+  {
+    "folder": "Old is gold",
+    "info": "songs/Old is gold/info.json",
+    "cover": "songs/Old is gold/cover.jpg"
+  },
+    {
+    "folder": "Punjabi",
+    "info": "songs/Punjabi/info.json",
+    "cover": "songs/Punjabi/cover.jpg"
+  },
+  {
+    "folder": "Romantic",
+    "info": "songs/Romantic/info.json",
+    "cover": "songs/Romantic/cover.jpg"
+  }
+  
+]
