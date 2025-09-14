@@ -63,7 +63,7 @@ async function displayalbums() {
     cardcontainer.innerHTML = "";
 
     for (const album of albums) {
-        const infoRes = await fetch(album.info);
+        const infoRes = await fetch(`songs/${encodeURIComponent(album.folder)}/info.json`);
         const info = await infoRes.json();
 
         cardcontainer.innerHTML += `
