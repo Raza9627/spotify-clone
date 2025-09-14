@@ -156,5 +156,3 @@ document.querySelector(".hamburger").addEventListener("click", () => {
 document.querySelector(".cancel").addEventListener("click", () => {
     document.querySelector(".firstbox").style.left = "-100%";
 })
-
-
