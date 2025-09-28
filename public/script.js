@@ -12,7 +12,8 @@ function secondstominute(seconds) {
 // Load songs from folder's info.json
 async function getsongs(folder) {
     currfolder = folder;
-    const res = await fetch(`/songs/${folder}/info.json`);
+    // ✅ Absolute path for Vercel
+    const res = await fetch(`/songs/${encodeURIComponent(folder)}/info.json`);
     const data = await res.json();
     songs = data.songs;
 
@@ -23,14 +24,14 @@ async function getsongs(folder) {
         const displayName = decodeURI(song).replaceAll("%20", " ");
         songUL.innerHTML += `
             <li>
-                <img class="invert" src="img/vynil-02-stroke-rounded.svg" alt="music">
+                <img class="invert" src="/img/vynil-02-stroke-rounded.svg" alt="music">
                 <div class="info">
                     <div>${displayName}</div>
                     <div>Raza</div>
                 </div>
                 <div class="playnow">
                     <span>Play now</span>
-                    <img src="img/play-circle-stroke-rounded.svg" alt="play">
+                    <img src="/img/play-circle-stroke-rounded.svg" alt="play">
                 </div>
             </li>`;
     }
@@ -46,30 +47,33 @@ async function getsongs(folder) {
 }
 
 const playmusic = (track, pause = false) => {
-    currentsong.src = `songs/${currfolder}/${encodeURIComponent(track)}`;
+    // ✅ Absolute path for Vercel
+    currentsong.src = `/songs/${encodeURIComponent(currfolder)}/${encodeURIComponent(track)}`;
     if (!pause) {
         currentsong.play();
-        play.src = "img/pause.svg";
+        play.src = "/img/pause.svg";
     }
     document.querySelector(".songinfo").innerHTML = track;
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
-}
+};
 
 // Display albums using master albums.json
 async function displayalbums() {
-    const res = await fetch("/albums.json");
+    // ✅ Absolute path for Vercel
+    const res = await fetch(`/albums.json`);
     const albums = await res.json();
     const cardcontainer = document.querySelector(".cardcontainer");
     cardcontainer.innerHTML = "";
 
     for (const album of albums) {
-        const infoRes = await fetch(`songs/${encodeURIComponent(album.folder)}/info.json`);
+        // ✅ Absolute path for Vercel
+        const infoRes = await fetch(`/songs/${encodeURIComponent(album.folder)}/info.json`);
         const info = await infoRes.json();
 
         cardcontainer.innerHTML += `
             <div data-folder="${album.folder}" class="card">
                 <div class="greenplay">
-                    <img src="img/play.svg" alt="play">
+                    <img src="/img/play.svg" alt="play">
                 </div>
                 <img src="${album.cover}" alt="cover">
                 <h2>${info.title}</h2>
@@ -77,14 +81,14 @@ async function displayalbums() {
             </div>`;
     }
 
- Array.from(cardcontainer.getElementsByClassName("card")).forEach(card => {
-    card.addEventListener("click", async () => {
-        songs = await getsongs(card.dataset.folder);
-        if (songs.length > 0) {
-            playmusic(songs[0]); // first song play ho jaye
-        }
+    Array.from(cardcontainer.getElementsByClassName("card")).forEach(card => {
+        card.addEventListener("click", async () => {
+            songs = await getsongs(card.dataset.folder);
+            if (songs.length > 0) {
+                playmusic(songs[0]); // play first song
+            }
+        });
     });
-});
 }
 
 // Main function
@@ -96,16 +100,18 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentsong.paused) {
             currentsong.play();
-            play.src = "img/pause.svg";
+            play.src = "/img/pause.svg";
         } else {
             currentsong.pause();
-            play.src = "img/playm.svg";
+            play.src = "/img/playm.svg";
         }
     });
 
     currentsong.addEventListener("timeupdate", () => {
-        document.querySelector(".songtime").innerHTML = `${secondstominute(currentsong.currentTime)}/${secondstominute(currentsong.duration)}`;
-        document.querySelector(".circle").style.left = (currentsong.currentTime / currentsong.duration) * 100 + "%";
+        document.querySelector(".songtime").innerHTML =
+            `${secondstominute(currentsong.currentTime)}/${secondstominute(currentsong.duration)}`;
+        document.querySelector(".circle").style.left =
+            (currentsong.currentTime / currentsong.duration) * 100 + "%";
     });
 
     document.querySelector(".seekbar").addEventListener("click", e => {
@@ -114,18 +120,17 @@ async function main() {
         currentsong.currentTime = (currentsong.duration * percent) / 100;
     });
 
-previous.addEventListener("click", () => {
-    let currentTrack = decodeURIComponent(currentsong.src.split("/").slice(-1)[0]);
-    let index = songs.indexOf(currentTrack);
-    if ((index - 1) >= 0) playmusic(songs[index - 1]);
-});
+    previous.addEventListener("click", () => {
+        let currentTrack = decodeURIComponent(currentsong.src.split("/").slice(-1)[0]);
+        let index = songs.indexOf(currentTrack);
+        if ((index - 1) >= 0) playmusic(songs[index - 1]);
+    });
 
-next.addEventListener("click", () => {
-    let currentTrack = decodeURIComponent(currentsong.src.split("/").slice(-1)[0]);
-    let index = songs.indexOf(currentTrack);
-    if ((index + 1) < songs.length) playmusic(songs[index + 1]);
-});
-
+    next.addEventListener("click", () => {
+        let currentTrack = decodeURIComponent(currentsong.src.split("/").slice(-1)[0]);
+        let index = songs.indexOf(currentTrack);
+        if ((index + 1) < songs.length) playmusic(songs[index + 1]);
+    });
 
     document.querySelector(".range input").addEventListener("change", e => {
         currentsong.volume = parseInt(e.target.value) / 100;
