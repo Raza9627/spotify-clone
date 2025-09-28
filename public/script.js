@@ -93,7 +93,7 @@ async function displayalbums() {
 
 // Main function
 async function main() {
-    await getsongs("Old is Gold"); // default album
+    await getsongs("English"); // default album
     playmusic(songs[0], true);
     await displayalbums();
 
